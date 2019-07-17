@@ -55,12 +55,15 @@ void loop() {
 
     case '>': // pixel (data length: 3 bytes)
     {
+      // If the byte isn't available yet, reading it will result in
+      // a value of 255 and then future data will be misaligned
       while (!Serial.available()) {}
       byte r = Serial.read();
       while (!Serial.available()) {}
       byte g = Serial.read();
       while (!Serial.available()) {}
       byte b = Serial.read();
+      
       if (framePixel < NUM_LEDS) {
         leds[framePixel] = CRGB(r,g,b);
       }
@@ -79,9 +82,11 @@ void loop() {
         byte g = Serial.read();
         while (!Serial.available()) {}
         byte b = Serial.read();
+        
         if (framePixel < NUM_LEDS) {
           leds[framePixel] = CRGB(r,g,b);
         }
+        
         framePixel++;
       }
       
@@ -89,9 +94,8 @@ void loop() {
     }
 
     default:
-        {
-          // unknown character, do nothing
-        }
+    { /* unknown character, do nothing */ }
+    
     } // end of switch (head)
 
     yield;
