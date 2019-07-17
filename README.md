@@ -1,6 +1,6 @@
 # Arduino Serial Images
 
-Sends images over serial to an arduino to be displayed on neopixels.
+Sends images over serial to an arduino to be displayed on neopixels. The arduino sketch uses the [FastLED library](https://github.com/FastLED/FastLED) to draw to the neopixels as opposed to the Adafruit one, so you'll need to install that if you don't have it. It can be installed from inside the Arduino IDE.
 
 The python serial writer demo requires the library [pySerial](https://pyserial.readthedocs.io/en/latest/index.html) to communicate over serial, and the library [tqdm](https://tqdm.github.io/) to monitor the frame rate.
 
