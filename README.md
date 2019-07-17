@@ -6,7 +6,20 @@ The python serial writer demo requires the library [pySerial](https://pyserial.r
 
 ## Usage
 
-Upload the `serial_frame_reader` sketch to your arduino. Images can be transmitted as follows:
+Upload the `serial_frame_reader` sketch to your arduino.
+
+To view an example, run the python demo:
+```
+python ./serial_frame_writer_demo.py
+```
+You can specify a port if needed:
+```
+python ./serial_frame_writer_demo.py COM10
+```
+
+
+### Image transmission
+Images are transmitted as follows:
 * `[` starts a frame.
 * `]` ends a frame - arduino will update the image.
 * `>` starts a pixel. The next 3 bytes are the red, green and blue values of the pixel.
