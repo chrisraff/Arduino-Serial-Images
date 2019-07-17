@@ -1,4 +1,3 @@
-import psutil
 import serial
 import serial.tools.list_ports
 import sys
