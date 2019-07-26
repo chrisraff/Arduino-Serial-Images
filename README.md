@@ -24,9 +24,10 @@ Images are transmitted as follows:
 * `]` ends a frame - arduino will update the image.
 * `>` starts a pixel. The next 3 bytes are the red, green and blue values of the pixel.
 * `.` starts 64 pixels. The next 64*3 bytes are the rgb values for the pixels.
+* `x` clears the image buffer.
 
 An example transmission could be
 `
-[>rgb>123>abc]
+x[>rgb>123>abc]
 `
-, which would be a 3 pixel image. The ASCII values of the letters and numbers would dictate the color of the pixels.
+, which would clear the buffer and then send a 3 pixel image. The ASCII values of the letters and numbers would dictate the color of the pixels.

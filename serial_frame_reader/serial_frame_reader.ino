@@ -13,6 +13,8 @@
     rgbrgbrgb...  64 pixels' worth of rgb data
     ]             this byte ends the frame and has the arduino update the display
 
+  You can also send 'x' to clear the image buffer
+
   created 17 July 2019
   by Chris Raff
 */
@@ -41,9 +43,9 @@ void setup() {
 
 void loop() {
   while (Serial.available()) {
-    
+
     byte head = Serial.read();
-    
+
     switch (head) {
     case '[': // frame start
       framePixel = 0;
@@ -63,13 +65,13 @@ void loop() {
       byte g = Serial.read();
       while (!Serial.available()) {}
       byte b = Serial.read();
-      
+
       if (framePixel < NUM_LEDS) {
         leds[framePixel] = CRGB(r,g,b);
       }
 
       framePixel++;
-      
+
       break;
     }
 
@@ -82,20 +84,25 @@ void loop() {
         byte g = Serial.read();
         while (!Serial.available()) {}
         byte b = Serial.read();
-        
+
         if (framePixel < NUM_LEDS) {
           leds[framePixel] = CRGB(r,g,b);
         }
-        
+
         framePixel++;
       }
-      
+
       break;
+    }
+
+    case 'x': // clear image buffer
+    {
+      FastLED.clear();
     }
 
     default:
     { /* unknown character, do nothing */ }
-    
+
     } // end of switch (head)
 
     yield;
