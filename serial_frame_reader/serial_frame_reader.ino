@@ -36,6 +36,9 @@ void setup() {
 
   FastLED.addLeds<NEOPIXEL, LED_PIN>(leds, NUM_LEDS);
 
+  // This prevents your USB port from being damaged, you can change this depending on your power configuration
+  FastLED.setMaxPowerInVoltsAndMilliamps(5, 500);
+
   FastLED.clear();
   FastLED.show();
 }
