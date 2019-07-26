@@ -42,3 +42,6 @@ while True:
     ser.write(data)
 
     disp.update()
+
+    # it may be necessary to sleep for a while at this point if the arduino takes a long time to
+    # write to the pixels, which will be the case when you have more than a couple hundred leds
